@@ -1,0 +1,12 @@
+{
+    "name": "navarr/attribute-dependency",
+    "description": "Adds the #[Dependency] attribute",
+    "type": "library",
+    "license": "MIT",
+    "require-dev": {
+        "php": "^8"
+    },
+    "autoload": {
+        "classmap": ["src/Dependency.php"]
+    }
+}
