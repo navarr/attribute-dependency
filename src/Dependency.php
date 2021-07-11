@@ -7,7 +7,7 @@ declare(strict_types=1);
 
 namespace Navarr\Attribute;
 
-use \Attribute;
+use Attribute;
 
 /**
  * Declares a dependency on another package
@@ -15,10 +15,17 @@ use \Attribute;
 #[Attribute(Attribute::TARGET_ALL | Attribute::IS_REPEATABLE)]
 class Dependency
 {
+    /**
+     * @param string $package The fully qualified name of the required composer package
+     * @param string|null $versionConstraint Optional, A composer-compatible version constraint
+     * @param string|null $reason Option, The reason for this restraint
+     * @param bool $required Whether or not it's required for the code to run. Default: true
+     */
     public function __construct(
         private string $package,
         private ?string $versionConstraint = null,
-        private ?string $reason = null
+        private ?string $reason = null,
+        private bool $required = true,
     ) {
     }
 
@@ -45,5 +52,10 @@ class Dependency
     public function hasReason(): bool
     {
         return $this->reason !== null;
+    }
+
+    public function isRequired(): bool
+    {
+        return $this->required;
     }
 }
